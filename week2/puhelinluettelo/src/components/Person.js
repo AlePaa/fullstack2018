@@ -1,7 +1,10 @@
 import React from 'react'
 
 const Person = ({person}) => (
-  <p>{person.name}</p>
+  <tr>
+    <td>{person.name}</td>
+    <td>{person.number}</td>
+  </tr>
 )
 
 export default Person

@@ -4,8 +4,12 @@ const Persons = ({persons}) => {
   return (
     <div>
     <h2>Numerot</h2>
-    {persons.map(person =>
-      <Person person={person} key={person.id} />)}
+      <table>
+        <tbody>
+          {persons.map(person =>
+            <Person person={person} key={person.id} />)}
+        </tbody>
+      </table>
     </div>
   )
 }
