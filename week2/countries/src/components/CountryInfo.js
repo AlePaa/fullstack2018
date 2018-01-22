@@ -5,7 +5,7 @@ const CountryInfo = ({country}) => (
     <h1>{country.native} {country.name}</h1>
     <p>capital: {country.capital}</p>
     <p>population: {country.population}</p>
-    <img src={country.flag} className="flag-image" />
+    <img src={country.flag} alt="flag not found" className="flag-image" />
   </div>
 )
 

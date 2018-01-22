@@ -5,13 +5,6 @@ import Countries from './components/Countries'
 import CountryInfo from './components/CountryInfo'
 
 class App extends Component {
-/*
-    Imperfect solution:
-      At least Niger cannot be viewed since the App
-      doesn't take into consideration countries
-      whose names are fully included in other countries'
-      names (Nigeria in this case).
-*/
 
   constructor(props) {
     super(props)
@@ -49,16 +42,20 @@ class App extends Component {
   }
 
   render() {
-    const countries = this.state.countries.filter((country) =>
+    let countries = this.state.countries.filter((country) =>
       (country.name.toLowerCase())
         .indexOf(this.state.searchString.toLowerCase()) > -1
     )
+    // Check for exact matches
+    countries = countries.find((country) =>
+      country.name.toLowerCase() === this.state.searchString.toLowerCase()) ||
+      countries
 
     const length = countries.length
     const countryDisplay = (length > 10) ?
       (<p>too many matches, specify another filter</p>) :
-      (length === 1) ?
-      (<CountryInfo country={countries[0]} />) :
+      (length === 1 || !(countries instanceof Array)) ?
+      (<CountryInfo country={countries[0] || countries} />) :
       (<Countries countries={countries} handleClick={this.handleClick} />)
 
     return (
